@@ -40,7 +40,7 @@ def parse_actions_index(actions_index):
             reduce.append(block)
 
     genotype = Genotype(normal = normal, normal_concat = normal_concat,
-                        reduce = reduce, reduce_concat = reduce_concat)
+                        reduce = reduce, reduce_concat = reduce_concat)  # normal_concat 标记了哪些是输出层
 
     return genotype
 

@@ -42,12 +42,13 @@ class PolicyGradient(object):
                 actions_log_p = actions_log_p.cpu().numpy().tolist()
                 actions_index = actions_index.cpu().numpy().tolist()
 
-                if episode < self.episodes // 3:
-                    worker = Worker(actions_p, actions_log_p, actions_index, self.args, 'cuda:0')
-                elif self.episodes // 3 <= episode < 2 * self.episodes // 3:
-                    worker = Worker(actions_p, actions_log_p, actions_index, self.args, 'cuda:1')
-                else:
-                    worker = Worker(actions_p, actions_log_p, actions_index, self.args, 'cuda:3')
+                worker = Worker(actions_p, actions_log_p, actions_index, self.args, 'cuda:0')  # jjq_debug
+                # if episode < self.episodes // 3:
+                #     worker = Worker(actions_p, actions_log_p, actions_index, self.args, 'cuda:0')
+                # elif self.episodes // 3 <= episode < 2 * self.episodes // 3:
+                #     worker = Worker(actions_p, actions_log_p, actions_index, self.args, 'cuda:1')
+                # else:
+                #     worker = Worker(actions_p, actions_log_p, actions_index, self.args, 'cuda:3')
 
                 process = Process(target=consume, args=(worker, results_queue))
                 process.start()
@@ -79,8 +80,8 @@ class PolicyGradient(object):
             logging.info(
                 'arch_epoch {:0>3d} top1_acc {:.4f} top5_avg_acc {:.4f} top20_avg_acc {:.4f} baseline {:.4f} '.format(
                     arch_epoch, top1_acc, top5_avg_acc, top20_avg_acc, self.baseline))
-            for i in range(5):
-                print(workers_top20[i].genotype)
+            # for i in range(5):  # jjq_debug
+            #     print(workers_top20[i].genotype)
 
             loss = 0
             for worker in workers:

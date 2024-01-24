@@ -86,7 +86,7 @@ class Network(nn.Module):
         C_prev_prev, C_prev, C_curr = C_curr, C_curr, C
         self.cells = nn.ModuleList()
         reduction_prev = False
-        for i in range(layers):
+        for i in range(layers):  # 4层
             if i in [0,2]:
                 C_curr *= 2
                 reduction = True

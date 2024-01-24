@@ -15,25 +15,30 @@ import sys
 parser = argparse.ArgumentParser('minst')
 #data
 parser.add_argument('--data', type=str, default='./mnist')
-parser.add_argument('--train_portion', type=float, default=0.9)
+#parser.add_argument('--train_portion', type=float, default=0.9)
+parser.add_argument('--train_portion', type=float, default=0.5)  # jjq_debug
 parser.add_argument('--batch_size', type=int, default=256)
 parser.add_argument('--cutout', action='store_true', default=False, help='use cutout')
 parser.add_argument('--cutout_length', type=int, default=10, help='cutout length')
 #model
-parser.add_argument('--model_epochs', type=int, default=5)
+# parser.add_argument('--model_epochs', type=int, default=5)
+parser.add_argument('--model_epochs', type=int, default=1)  # jjq_debug
 parser.add_argument('--model_lr', type=float, default=0.001)
 parser.add_argument('--model_lr_min', type=float, default=0.001)
 parser.add_argument('--model_weight_decay', type=float, default=3e-4)
 parser.add_argument('--model_momentum', type=float, default=0.9)
 parser.add_argument('--init_channel', type=int, default=4)
 #architecture
-parser.add_argument('--arch_epochs', type=int, default=100)
+# parser.add_argument('--arch_epochs', type=int, default=100)
+parser.add_argument('--arch_epochs', type=int, default=1)  # jjq_debug
 parser.add_argument('--arch_lr', type=float, default=3.5e-4)
-parser.add_argument('--episodes', type=int, default=20)
+#parser.add_argument('--episodes', type=int, default=20)
+parser.add_argument('--episodes', type=int, default=2)  # jjq_debug
 parser.add_argument('--entropy_weight', type=float, default=1e-5)
 parser.add_argument('--baseline_weight', type=float, default=0.95)
 parser.add_argument('--embedding_size', type=int, default=32)
-parser.add_argument('--algorithm', type=str, choices=['PPO', 'PG', 'RS'], default='PPO')
+# parser.add_argument('--algorithm', type=str, choices=['PPO', 'PG', 'RS'], default='PPO')
+parser.add_argument('--algorithm', type=str, choices=['PPO', 'PG', 'RS'], default='PG')  # jjq_debug
 #PPO
 parser.add_argument('--ppo_epochs', type=int, default=10)
 parser.add_argument('--clip_epsilon', type=float, default=0.2)

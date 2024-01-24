@@ -117,6 +117,6 @@ class FactorizedReduce(nn.Module):
 
   def forward(self, x):
     x = self.relu(x)
-    out = torch.cat([self.conv_1(x), self.conv_2(x[:,:,1:,1:])], dim=1)
+    out = torch.cat([self.conv_1(x), self.conv_2(x[:,:,1:,1:])], dim=1)  # 两个卷积分别作用于奇数行和偶数行
     out = self.bn(out)
     return out

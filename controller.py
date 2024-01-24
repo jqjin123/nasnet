@@ -45,7 +45,7 @@ class Controller(nn.Module):
         actions_log_p = []
         actions_index = []
 
-        for type in range(2):
+        for type in range(2):  # normal unit and reduction unit
             for node in range(self.steps):
                 #node1
                 h_t, c_t, logits = self.forward(input, h_t, c_t, self.node_decoders[node])
